@@ -45,13 +45,13 @@
 (when (maybe-require-package 'git-commit)
   (add-hook 'git-commit-mode-hook 'goto-address-mode))
 
-
+
 ;; Convenient binding for vc-git-grep
 (with-eval-after-load 'vc
   (define-key vc-prefix-map (kbd "f") 'vc-git-grep))
 
 
-
+
 ;;; git-svn support
 
 ;; (when (maybe-require-package 'magit-svn)

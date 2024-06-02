@@ -5,14 +5,14 @@
 (require 'package)
 (require 'cl-lib)
 
-
+
 ;;; Install into separate package dirs for each Emacs version, to prevent bytecode incompatibility
 (setq package-user-dir
       (expand-file-name (format "elpa-%s.%s" emacs-major-version emacs-minor-version)
                         user-emacs-directory))
 
 
-
+
 ;;; Standard package repositories
 
 (add-to-list 'package-archives '( "melpa" . "https://melpa.org/packages/") t)
@@ -20,12 +20,12 @@
 ;;(add-to-list 'package-archives (cons "melpa-mirror" (concat proto "://www.mirrorservice.org/sites/melpa.org/packages/")) t)
 
 
-
+
 ;; Work-around for https://debbugs.gnu.org/cgi/bugreport.cgi?bug=34341
 (when (and (version< emacs-version "26.3") (boundp 'libgnutls-version) (>= libgnutls-version 30604))
   (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
 
-
+
 ;;; On-demand installation of packages
 
 (defun require-package (package &optional min-version no-refresh)
@@ -59,14 +59,14 @@ locate PACKAGE."
      (message "Couldn't install optional package `%s': %S" package err)
      nil)))
 
-
+
 ;;; Fire up package.el
 
 (setq package-enable-at-startup nil)
 (setq package-native-compile t)
 (package-initialize)
 
-
+
 ;; package.el updates the saved version of package-selected-packages correctly only
 ;; after custom-file has been loaded, which is a bug. We work around this by adding
 ;; the required packages to package-selected-packages after startup is complete.
@@ -86,7 +86,7 @@ advice for `require-package', to which ARGS are passed."
 
 (advice-add 'require-package :around 'sanityinc/note-selected-package)
 
-
+
 ;; Work around an issue in Emacs 29 where seq gets implicitly
 ;; reinstalled via the rg -> transient dependency chain, but fails to
 ;; reload cleanly due to not finding seq-25.el, breaking first-time
@@ -100,7 +100,7 @@ advice for `require-package', to which ARGS are passed."
   (advice-add 'package--reload-previously-loaded :around
               'sanityinc/reload-previously-loaded-with-load-path-updated))
 
-
+
 
 (when (fboundp 'package--save-selected-packages)
   (require-package 'seq)
@@ -109,11 +109,11 @@ advice for `require-package', to which ARGS are passed."
               (package--save-selected-packages
                (seq-uniq (append sanityinc/required-packages package-selected-packages))))))
 
-
+
 (let ((package-check-signature nil))
   (require-package 'gnu-elpa-keyring-update))
 
-
+
 (defun sanityinc/set-tabulated-list-column-width (col-name width)
   "Set any column with name COL-NAME to the given WIDTH."
   (when (> width (length col-name))

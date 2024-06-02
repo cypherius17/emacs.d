@@ -31,7 +31,7 @@ BUFFER and ALIST are as for `display-buffer-full-frame'."
 
 (sanityinc/fullframe-mode 'package-menu-mode)
 
-
+
 ;; Handier way to add modes to auto-mode-alist
 (defun add-auto-mode (mode &rest patterns)
   "Add entries to `auto-mode-alist' to use `MODE' for all given file `PATTERNS'."
@@ -47,7 +47,7 @@ BUFFER and ALIST are as for `display-buffer-full-frame'."
   (add-hook (derived-mode-hook-name mode)
             (apply-partially 'sanityinc/set-major-mode-name name)))
 
-
+
 ;; String utilities missing from core emacs
 
 (defun sanityinc/string-all-matches (regex str &optional group)
@@ -61,7 +61,7 @@ BUFFER and ALIST are as for `display-buffer-full-frame'."
     result))
 
 
-
+
 ;; Delete the current file
 
 (defun delete-this-file ()
@@ -75,7 +75,7 @@ BUFFER and ALIST are as for `display-buffer-full-frame'."
     (kill-this-buffer)))
 
 
-
+
 ;; Rename the current file
 
 (if (fboundp 'rename-visited-file)
@@ -93,7 +93,7 @@ BUFFER and ALIST are as for `display-buffer-full-frame'."
         (set-visited-file-name new-name)
         (rename-buffer new-name)))))
 
-
+
 ;; Browse current HTML file
 
 (defun browse-current-file ()

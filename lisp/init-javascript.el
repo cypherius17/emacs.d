@@ -7,7 +7,7 @@
 (maybe-require-package 'typescript-mode)
 (maybe-require-package 'prettier-js)
 
-
+
 ;;; Basic js-mode setup
 
 (add-to-list 'auto-mode-alist '("\\.\\(js\\|es6\\)\\(\\.erb\\)?\\'" . js-mode))
@@ -19,7 +19,7 @@
 (setq-default js-indent-level 2)
 
 
-
+
 ;; js2-mode
 
 ;; Change some defaults: customize them to override
@@ -47,7 +47,7 @@
   (sanityinc/major-mode-lighter 'js2-mode "JS2")
   (sanityinc/major-mode-lighter 'js2-jsx-mode "JSX2"))
 
-
+
 (require 'derived)
 (when (and (or (executable-find "rg") (executable-find "ag"))
            (maybe-require-package 'xref-js2))
@@ -67,7 +67,7 @@
     (define-key js2-mode-map (kbd "M-.") nil)))
 
 
-
+
 ;; Run and interact with an inferior JS via js-comint.el
 
 (when (maybe-require-package 'js-comint)

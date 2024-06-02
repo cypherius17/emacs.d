@@ -7,7 +7,7 @@
 (require-package 'sly-macrostep)
 (require-package 'sly-repl-ansi-color)
 
-
+
 ;;; Lisp buffers
 
 (with-eval-after-load 'sly
@@ -18,7 +18,7 @@
     ;;   (push 'sly-company features))
     (sly-setup features)))
 
-
+
 ;;; REPL
 
 (with-eval-after-load 'sly-repl

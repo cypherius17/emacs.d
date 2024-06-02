@@ -14,7 +14,7 @@
 ;; named and configured, so there could be different results. Some
 ;; common remappings are included below.
 
-
+
 ;;; Enable built-in and pre-installed TS modes if the grammars are available
 
 (defun sanityinc/auto-configure-treesitter ()
@@ -53,7 +53,7 @@ Return a list of languages seen along the way."
 
 (sanityinc/auto-configure-treesitter)
 
-
+
 ;;; Support remapping of additional libraries
 
 (defun sanityinc/remap-ts-mode (non-ts-mode ts-mode grammar)
