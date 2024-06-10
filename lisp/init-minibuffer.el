@@ -6,6 +6,11 @@
 (when (maybe-require-package 'vertico)
   (add-hook 'after-init-hook 'vertico-mode)
 
+  ;; Custom key bindings for vertico
+  (with-eval-after-load 'vertico
+    (define-key vertico-map (kbd "C-j") 'vertico-next)
+    (define-key vertico-map (kbd "C-k") 'vertico-previous))
+
   (when (maybe-require-package 'embark)
     (with-eval-after-load 'vertico
       (define-key vertico-map (kbd "C-c C-o") 'embark-export)
@@ -36,7 +41,6 @@
     (global-set-key [remap goto-line] 'consult-goto-line)
 
 
-
     (when (maybe-require-package 'embark-consult)
       (with-eval-after-load 'embark
         (require 'embark-consult)
@@ -44,7 +48,6 @@
 
 (when (maybe-require-package 'marginalia)
   (add-hook 'after-init-hook 'marginalia-mode))
-
 
 (provide 'init-minibuffer)
 ;;; init-minibuffer.el ends here
